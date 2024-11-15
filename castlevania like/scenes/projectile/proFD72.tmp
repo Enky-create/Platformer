@@ -1,0 +1,87 @@
+[gd_scene load_steps=12 format=3 uid="uid://ygrjiq1l14my"]
+
+[ext_resource type="PackedScene" uid="uid://dcdpxkb0unl5r" path="res://scenes/projectile/projectile.tscn" id="1_63nbw"]
+[ext_resource type="Texture2D" uid="uid://snyi53aktadp" path="res://assets/gothicvania patreon collection/ gothicvania patreon collection/Fire-Skull-Files/PNG/fire-skull.png" id="2_0rjxh"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f0cpt"]
+atlas = ExtResource("2_0rjxh")
+region = Rect2(0, 0, 96, 112)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dbsuw"]
+atlas = ExtResource("2_0rjxh")
+region = Rect2(96, 0, 96, 112)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7ld4t"]
+atlas = ExtResource("2_0rjxh")
+region = Rect2(192, 0, 96, 112)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_igec5"]
+atlas = ExtResource("2_0rjxh")
+region = Rect2(288, 0, 96, 112)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3aigf"]
+atlas = ExtResource("2_0rjxh")
+region = Rect2(384, 0, 96, 112)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_tokkb"]
+atlas = ExtResource("2_0rjxh")
+region = Rect2(480, 0, 96, 112)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fila4"]
+atlas = ExtResource("2_0rjxh")
+region = Rect2(576, 0, 96, 112)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xslgi"]
+atlas = ExtResource("2_0rjxh")
+region = Rect2(672, 0, 96, 112)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_x8nbt"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f0cpt")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dbsuw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7ld4t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_igec5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3aigf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_tokkb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fila4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xslgi")
+}],
+"loop": true,
+"name": &"default",
+"speed": 8.0
+}]
+
+[node name="Projectile" instance=ExtResource("1_63nbw")]
+speed = 150
+time = 5.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="0"]
+position = Vector2(4, -19)
+sprite_frames = SubResource("SpriteFrames_x8nbt")
+autoplay = "default"
+
+[node name="hitbox" parent="." index="1"]
+collision_layer = 0
+
+[node name="Timer" parent="." index="2"]
+one_shot = true
+
+[node name="Area2D" parent="." index="3"]
+collision_layer = 0
+monitorable = false

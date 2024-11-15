@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="CharacterPull" load_steps=4 format=3 uid="uid://c5ukkc1e87psq"]
+
+[ext_resource type="Script" path="res://Resources/character_pull.gd" id="1_00yjs"]
+[ext_resource type="PackedScene" uid="uid://cwod4uli27u18" path="res://scenes/player/heavy_knight/heavy_night.tscn" id="1_7pwb0"]
+[ext_resource type="PackedScene" uid="uid://d1kpr3w3rri85" path="res://scenes/player/nightborne/nightborne.tscn" id="2_wppsc"]
+
+[resource]
+script = ExtResource("1_00yjs")
+characters = Array[PackedScene]([ExtResource("1_7pwb0"), ExtResource("2_wppsc")])

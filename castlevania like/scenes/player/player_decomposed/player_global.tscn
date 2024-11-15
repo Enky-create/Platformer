@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://b3c4n6msbv4l1"]
+
+[ext_resource type="Script" path="res://scenes/player/player_decomposed/player_global.gd" id="1_x1mpg"]
+[ext_resource type="Resource" uid="uid://c5ukkc1e87psq" path="res://Resources/character_pull.tres" id="2_n2vti"]
+
+[node name="Player" type="Node2D"]
+script = ExtResource("1_x1mpg")
+pull = ExtResource("2_n2vti")

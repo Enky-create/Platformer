@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://c3gnw3fc0krkd"]
+
+[ext_resource type="PackedScene" uid="uid://dcdpxkb0unl5r" path="res://scenes/projectile/projectile.tscn" id="1_xdcl1"]
+
+[node name="ProjectileTest" type="Node2D"]
+
+[node name="Projectile" parent="." instance=ExtResource("1_xdcl1")]
+position = Vector2(60, 91)
