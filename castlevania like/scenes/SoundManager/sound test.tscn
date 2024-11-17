@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://bvqoritq5xejc"]
+
+[ext_resource type="Script" path="res://scenes/SoundManager/sound_test.gd" id="1_xfygj"]
+[ext_resource type="PackedScene" uid="uid://jou8eb8ym3u5" path="res://scenes/SoundManager/collision_sound_manager.tscn" id="2_paeds"]
+[ext_resource type="PackedScene" uid="uid://ddrid0cctayf2" path="res://components/spawn_point/spawn.tscn" id="3_8yowf"]
+
+[node name="SoundTest" type="Node2D"]
+script = ExtResource("1_xfygj")
+
+[node name="CollisionSoundManager" parent="." instance=ExtResource("2_paeds")]
+
+[node name="spawn" parent="." instance=ExtResource("3_8yowf")]
+position = Vector2(114, 33)

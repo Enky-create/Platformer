@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://83o2cm4ng3ho"
-path="res://.godot/imported/hell-beast-idle.png-a600e000e713ac61d95532e36102342f.ctex"
+path="res://.godot/imported/hell-beast-idle.png-c7bfc0451c4aaaefff759d1026ef64a1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/gothicvania patreon collection/ gothicvania patreon collection/Hell-Beast-Files/PNG/with-stroke/hell-beast-idle.png"
-dest_files=["res://.godot/imported/hell-beast-idle.png-a600e000e713ac61d95532e36102342f.ctex"]
+source_file="res://assets/gothicvania patreon collection/gothicvania patreon collection/Hell-Beast-Files/PNG/with-stroke/hell-beast-idle.png"
+dest_files=["res://.godot/imported/hell-beast-idle.png-c7bfc0451c4aaaefff759d1026ef64a1.ctex"]
 
 [params]
 

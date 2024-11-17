@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://i06w81xjefuy"
-path="res://.godot/imported/demon-idle.png-b54525820c784a833b424f1a94885fab.ctex"
+path="res://.godot/imported/demon-idle.png-71d6c6e6cf2caf148f8a8ffa6ce30efc.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/gothicvania patreon collection/ gothicvania patreon collection/demon-Files/PNG/demon-idle.png"
-dest_files=["res://.godot/imported/demon-idle.png-b54525820c784a833b424f1a94885fab.ctex"]
+source_file="res://assets/gothicvania patreon collection/gothicvania patreon collection/demon-Files/PNG/demon-idle.png"
+dest_files=["res://.godot/imported/demon-idle.png-71d6c6e6cf2caf148f8a8ffa6ce30efc.ctex"]
 
 [params]
 

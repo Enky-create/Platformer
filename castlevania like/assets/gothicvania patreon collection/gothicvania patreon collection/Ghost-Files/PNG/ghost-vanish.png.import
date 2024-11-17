@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://clute0e81d6pw"
-path="res://.godot/imported/ghost-vanish.png-3f5d0ad15968a3bdd3460492830ebe0e.ctex"
+path="res://.godot/imported/ghost-vanish.png-31e06b6ef4ae7f21b992ecbf17d85641.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/gothicvania patreon collection/ gothicvania patreon collection/Ghost-Files/PNG/ghost-vanish.png"
-dest_files=["res://.godot/imported/ghost-vanish.png-3f5d0ad15968a3bdd3460492830ebe0e.ctex"]
+source_file="res://assets/gothicvania patreon collection/gothicvania patreon collection/Ghost-Files/PNG/ghost-vanish.png"
+dest_files=["res://.godot/imported/ghost-vanish.png-31e06b6ef4ae7f21b992ecbf17d85641.ctex"]
 
 [params]
 

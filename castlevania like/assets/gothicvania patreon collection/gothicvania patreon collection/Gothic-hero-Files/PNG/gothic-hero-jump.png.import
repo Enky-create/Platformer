@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://dtqhx1vy3y3ss"
-path="res://.godot/imported/gothic-hero-jump.png-c5f13dcd81afa2b8260c8d512342237c.ctex"
+path="res://.godot/imported/gothic-hero-jump.png-f9c30f455eb35c53a918ee95d3908a8c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/gothicvania patreon collection/ gothicvania patreon collection/Gothic-hero-Files/PNG/gothic-hero-jump.png"
-dest_files=["res://.godot/imported/gothic-hero-jump.png-c5f13dcd81afa2b8260c8d512342237c.ctex"]
+source_file="res://assets/gothicvania patreon collection/gothicvania patreon collection/Gothic-hero-Files/PNG/gothic-hero-jump.png"
+dest_files=["res://.godot/imported/gothic-hero-jump.png-f9c30f455eb35c53a918ee95d3908a8c.ctex"]
 
 [params]
 

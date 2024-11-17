@@ -1,9 +1,9 @@
 [gd_scene load_steps=13 format=3 uid="uid://bdfnx1cnt737h"]
 
-[ext_resource type="Texture2D" uid="uid://cxllglhcno11v" path="res://assets/gothicvania patreon collection/ gothicvania patreon collection/Gothic-Horror-Files/PNG/layers/clouds.png" id="1_g5gvc"]
+[ext_resource type="Texture2D" uid="uid://cxllglhcno11v" path="res://assets/gothicvania patreon collection/gothicvania patreon collection/Gothic-Horror-Files/PNG/layers/clouds.png" id="1_g5gvc"]
 [ext_resource type="Script" path="res://scenes/levels/start_level/level.gd" id="1_te8ha"]
-[ext_resource type="Texture2D" uid="uid://dh44fdi8ccc3l" path="res://assets/gothicvania patreon collection/ gothicvania patreon collection/Gothic-Horror-Files/PNG/layers/tiles.png" id="2_4f26k"]
-[ext_resource type="Texture2D" uid="uid://dnxvyhx36g7vj" path="res://assets/gothicvania patreon collection/ gothicvania patreon collection/Gothic-Horror-Files/PNG/layers/town.png" id="2_80nrf"]
+[ext_resource type="Texture2D" uid="uid://dh44fdi8ccc3l" path="res://assets/gothicvania patreon collection/gothicvania patreon collection/Gothic-Horror-Files/PNG/layers/tiles.png" id="2_4f26k"]
+[ext_resource type="Texture2D" uid="uid://dnxvyhx36g7vj" path="res://assets/gothicvania patreon collection/gothicvania patreon collection/Gothic-Horror-Files/PNG/layers/town.png" id="2_80nrf"]
 [ext_resource type="PackedScene" uid="uid://ddrid0cctayf2" path="res://components/spawn_point/spawn.tscn" id="4_4ua18"]
 [ext_resource type="PackedScene" uid="uid://b24uq2c337neh" path="res://scenes/enemies/ghost/ghost.tscn" id="5_nnhlm"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="7_eh7b3"]

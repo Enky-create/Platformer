@@ -591,6 +591,7 @@ size = Vector2(25.2941, 30.5882)
 scale = Vector2(1.7, 1.7)
 collision_mask = 2
 script = ExtResource("1_v7r74")
+type = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_ut3p2")

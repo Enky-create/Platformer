@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://don5ndaitgsx1"
-path="res://.godot/imported/nightmare-galloping.png-127bcd5f2e49ce1d6943d0a8ea40c73f.ctex"
+path="res://.godot/imported/nightmare-galloping.png-5e7c6dd02f652d8cbb62998b111f2aed.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/gothicvania patreon collection/ gothicvania patreon collection/Nightmare-Files/PNG/nightmare-galloping.png"
-dest_files=["res://.godot/imported/nightmare-galloping.png-127bcd5f2e49ce1d6943d0a8ea40c73f.ctex"]
+source_file="res://assets/gothicvania patreon collection/gothicvania patreon collection/Nightmare-Files/PNG/nightmare-galloping.png"
+dest_files=["res://.godot/imported/nightmare-galloping.png-5e7c6dd02f652d8cbb62998b111f2aed.ctex"]
 
 [params]
 

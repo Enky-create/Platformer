@@ -2,7 +2,7 @@ extends CharacterBody2D
 class_name Character
 
 @export var speed = 200.0
-
+@export var type:CharacterTypes.CharacterType=CharacterTypes.CharacterType.Knight
 @export var jump_velocity = -400.0
 @export var health:int = 100:
 	set(value):

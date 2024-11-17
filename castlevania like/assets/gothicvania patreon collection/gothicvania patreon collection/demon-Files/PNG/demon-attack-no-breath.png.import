@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ceyk8n5jxocpi"
-path="res://.godot/imported/demon-attack-no-breath.png-899ac387ea4540219db65ab044b8b7fc.ctex"
+path="res://.godot/imported/demon-attack-no-breath.png-5f0b54656ad166508d8811a84fe2c6d6.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/gothicvania patreon collection/ gothicvania patreon collection/demon-Files/PNG/demon-attack-no-breath.png"
-dest_files=["res://.godot/imported/demon-attack-no-breath.png-899ac387ea4540219db65ab044b8b7fc.ctex"]
+source_file="res://assets/gothicvania patreon collection/gothicvania patreon collection/demon-Files/PNG/demon-attack-no-breath.png"
+dest_files=["res://.godot/imported/demon-attack-no-breath.png-5f0b54656ad166508d8811a84fe2c6d6.ctex"]
 
 [params]
 

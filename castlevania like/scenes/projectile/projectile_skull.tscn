@@ -1,7 +1,7 @@
 [gd_scene load_steps=12 format=3 uid="uid://ygrjiq1l14my"]
 
 [ext_resource type="PackedScene" uid="uid://dcdpxkb0unl5r" path="res://scenes/projectile/projectile.tscn" id="1_63nbw"]
-[ext_resource type="Texture2D" uid="uid://snyi53aktadp" path="res://assets/gothicvania patreon collection/ gothicvania patreon collection/Fire-Skull-Files/PNG/fire-skull.png" id="2_0rjxh"]
+[ext_resource type="Texture2D" uid="uid://snyi53aktadp" path="res://assets/gothicvania patreon collection/gothicvania patreon collection/Fire-Skull-Files/PNG/fire-skull.png" id="2_0rjxh"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_f0cpt"]
 atlas = ExtResource("2_0rjxh")

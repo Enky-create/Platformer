@@ -3,7 +3,7 @@ class_name  Ghost
 @export var group:String
 var player:Character = null
 @onready var timer = $Timer
-
+@export var type:CharacterTypes.EnemyType=CharacterTypes.EnemyType.Ghost
 @onready var markers = %markers
 @onready var state_chart = $StateChart
 @onready var animation_player = $AnimationPlayer

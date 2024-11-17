@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://djoqxv6htlr8r"
-path="res://.godot/imported/night-town-background-far-buildings.png-244908dd963116bdf32aba5c087b27d9.ctex"
+path="res://.godot/imported/night-town-background-far-buildings.png-1aa8ab49ecf3d5585a7efdf6af0d478d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/gothicvania patreon collection/ gothicvania patreon collection/night-town-background-files/layers/night-town-background-far-buildings.png"
-dest_files=["res://.godot/imported/night-town-background-far-buildings.png-244908dd963116bdf32aba5c087b27d9.ctex"]
+source_file="res://assets/gothicvania patreon collection/gothicvania patreon collection/night-town-background-files/layers/night-town-background-far-buildings.png"
+dest_files=["res://.godot/imported/night-town-background-far-buildings.png-1aa8ab49ecf3d5585a7efdf6af0d478d.ctex"]
 
 [params]
 

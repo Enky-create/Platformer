@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://cop6rkxcqrq2y"
-path="res://.godot/imported/hell-hound-run.png-989667e76a17e61f9e4cd831650749e7.ctex"
+path="res://.godot/imported/hell-hound-run.png-f89edb5e05a5e59ffaa1cf8c82b82227.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/gothicvania patreon collection/ gothicvania patreon collection/Hell-Hound-Files/PNG/hell-hound-run.png"
-dest_files=["res://.godot/imported/hell-hound-run.png-989667e76a17e61f9e4cd831650749e7.ctex"]
+source_file="res://assets/gothicvania patreon collection/gothicvania patreon collection/Hell-Hound-Files/PNG/hell-hound-run.png"
+dest_files=["res://.godot/imported/hell-hound-run.png-f89edb5e05a5e59ffaa1cf8c82b82227.ctex"]
 
 [params]
 

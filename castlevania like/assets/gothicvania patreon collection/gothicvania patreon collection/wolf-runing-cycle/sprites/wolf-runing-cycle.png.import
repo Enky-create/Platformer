@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://ccfkvcxjknkyu"
-path="res://.godot/imported/wolf-runing-cycle.png-70a99e9134e20c06918b2b73a5d62527.ctex"
+path="res://.godot/imported/wolf-runing-cycle.png-aca5a62ae8c3a16a2256ab2f31019dc1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/gothicvania patreon collection/ gothicvania patreon collection/wolf-runing-cycle/sprites/wolf-runing-cycle.png"
-dest_files=["res://.godot/imported/wolf-runing-cycle.png-70a99e9134e20c06918b2b73a5d62527.ctex"]
+source_file="res://assets/gothicvania patreon collection/gothicvania patreon collection/wolf-runing-cycle/sprites/wolf-runing-cycle.png"
+dest_files=["res://.godot/imported/wolf-runing-cycle.png-aca5a62ae8c3a16a2256ab2f31019dc1.ctex"]
 
 [params]
 

@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bd2clqw8klxe0"
-path="res://.godot/imported/old-dark-castle-interior-tileset.png-36bc1958f63f54aee4a9862708d77f18.ctex"
+path="res://.godot/imported/old-dark-castle-interior-tileset.png-ebafb4f60a9ab593cc0306a4910f7f0d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/gothicvania patreon collection/ gothicvania patreon collection/Old-dark-Castle-tileset-Files/PNG/old-dark-castle-interior-tileset.png"
-dest_files=["res://.godot/imported/old-dark-castle-interior-tileset.png-36bc1958f63f54aee4a9862708d77f18.ctex"]
+source_file="res://assets/gothicvania patreon collection/gothicvania patreon collection/Old-dark-Castle-tileset-Files/PNG/old-dark-castle-interior-tileset.png"
+dest_files=["res://.godot/imported/old-dark-castle-interior-tileset.png-ebafb4f60a9ab593cc0306a4910f7f0d.ctex"]
 
 [params]
 

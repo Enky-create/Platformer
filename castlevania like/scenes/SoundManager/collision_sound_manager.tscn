@@ -1,0 +1,18 @@
+[gd_scene load_steps=5 format=3 uid="uid://jou8eb8ym3u5"]
+
+[ext_resource type="Script" path="res://scenes/SoundManager/sound_manager.gd" id="1_lptce"]
+[ext_resource type="Script" path="res://Resources/sound/sound_mapping.gd" id="2_y38q6"]
+[ext_resource type="AudioStream" uid="uid://ybf0ddl3xqhk" path="res://audio/zapsplat_pack_sword_swings_hits_and_scrapes_mp3/zapsplat_warfare_sword_swing_medium_whoosh_blade_ring_001_43815.mp3" id="3_kc4s0"]
+
+[sub_resource type="Resource" id="Resource_csqrc"]
+script = ExtResource("2_y38q6")
+character = 0
+enemy = 1
+sounds = Array[AudioStream]([ExtResource("3_kc4s0")])
+volume = 1.0
+pitch = 1.0
+max_instances = 3
+
+[node name="CollisionSoundManager" type="Node2D"]
+script = ExtResource("1_lptce")
+sound_mappings = Array[ExtResource("2_y38q6")]([SubResource("Resource_csqrc")])
