@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://c7asybgq15y5w"
+path="res://.godot/imported/zapsplat_foley_footstep_single_wellington_boots_rubber_adults_on_gravel_stones_011_101975.mp3-cb132c3ce40b452089860a7db3d582c1.mp3str"
+
+[deps]
+
+source_file="res://audio/sfx/knight footsteps/zapsplat_foley_footstep_single_wellington_boots_rubber_adults_on_gravel_stones_011_101975.mp3"
+dest_files=["res://.godot/imported/zapsplat_foley_footstep_single_wellington_boots_rubber_adults_on_gravel_stones_011_101975.mp3-cb132c3ce40b452089860a7db3d582c1.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

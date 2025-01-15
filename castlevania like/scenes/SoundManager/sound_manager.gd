@@ -1,13 +1,11 @@
-
 extends Node2D
-class_name CollisionSoundManager
-
 @export var sound_mappings: Array[SoundMapping] = []
 var sound_map: Dictionary = {}
 var active_sounds: Dictionary = {}
 
 func _ready():
 	_build_sound_map()
+	GlobalSignals.someone_was_hit.connect(_on_hit_happen)
 
 func _build_sound_map():
 	for mapping in sound_mappings:
@@ -16,7 +14,8 @@ func _build_sound_map():
 		active_sounds[key] = 0  # Счётчик активных звуков
 
 func _get_key(character, enemy) -> String:
-	return str(character) + ":" + str(enemy)
+	var key = str(CharacterTypes.CharacterType.keys()[character]) + ":" + str(CharacterTypes.CharacterType.keys()[enemy])
+	return key
 
 func get_mapping(character, enemy) -> SoundMapping:
 	var key = _get_key(character, enemy)
@@ -57,3 +56,7 @@ func _play_sound(mapping: SoundMapping, position: Vector2):
 func _on_sound_finished(audio_player: AudioStreamPlayer2D, key: String):
 	active_sounds[key] -= 1
 	audio_player.queue_free()
+
+func _on_hit_happen(hitbox:Hitbox,hurtbox:Hurtbox):
+	if "type" in hitbox.owner and "type" in hurtbox.owner:
+		play_sound(hitbox.owner.type,hurtbox.owner.type,hurtbox.global_position)

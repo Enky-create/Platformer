@@ -16,7 +16,7 @@ var look_direction:float = 1
 func _ready():
 	speed=400
 
-func _physics_process(delta):
+func _physics_process(_delta):
 	if not is_on_floor():
 		state_chart.send_event("to fall")
 func move_character(delta):
@@ -68,7 +68,7 @@ func _on_attack_state_entered():
 	animation_player.play("attack")
 
 
-func _on_attack_state_processing(delta):
+func _on_attack_state_processing(_delta):
 	velocity=Vector2.ZERO # Replace with function body.
 
 

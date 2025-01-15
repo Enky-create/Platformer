@@ -2,14 +2,9 @@ class_name CharacterTypes
 enum CharacterType {
 	Knight,
 	Nightborne,
-	Mage
-}
-
-# enemy_type.gd
-enum EnemyType {
-	
+	Mage,
 	Goblin,
 	Ghost,
 	Orc,
-	Troll
+	Troll,
 }

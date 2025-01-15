@@ -9,11 +9,21 @@ class_name HeavyKnight
 @export var dodge_speed = 100.0
 @export var acceleration = 1000
 @export var hitbox_offset = 46
+
+var _sfx_footsteps=SoundManager.null_instance()
 var direction:float
 var jump_position
 var look_direction:float = 1
 
-func _physics_process(delta):
+func _ready():
+	SoundManager.updated.connect(on_sound_manager_updated)
+
+func on_sound_manager_updated():
+	if SoundManager.should_skip_instancing(_sfx_footsteps):
+		return
+	_sfx_footsteps=SoundManager.instance_poly("HeavyKnight","Footsteps")
+
+func _physics_process(_delta):
 	if not is_on_floor():
 		state_chart.send_event("to fall")
 	if health<=0:
@@ -52,6 +62,7 @@ func flip():
 
 func _on_run_state_entered():
 	animation_player.play("run")
+	_sfx_footsteps.trigger()
 
 
 func _on_dodge_state_entered():
@@ -59,7 +70,7 @@ func _on_dodge_state_entered():
 	animation_player.play("roll") # Replace with function body.
 
 
-func _on_dodge_state_physics_processing(delta):
+func _on_dodge_state_physics_processing(_delta):
 	if not animation_player.is_playing():
 		state_chart.send_event("to idle")
 	velocity.x = look_direction*dodge_speed
@@ -83,6 +94,8 @@ func _on_run_state_processing(delta):
 	if !direction:
 		state_chart.send_event("to idle")
 	velocity.x = move_toward(velocity.x, direction * speed,acceleration*delta)
+	
+	
 
 
 func _on_light_attack_state_entered():
@@ -96,7 +109,7 @@ func _on_hard_attack_state_entered():
 		animation_player.play("attack2_nomovement")
 
 
-func _on_hard_attack_state_processing(delta):
+func _on_hard_attack_state_processing(_delta):
 	if not animation_player.is_playing():
 		state_chart.send_event("to idle")
 
@@ -108,7 +121,7 @@ func _on_jump_state_entered():
 		move_and_slide()
 
 
-func _on_jump_state_processing(delta):
+func _on_jump_state_processing(_delta):
 	if Input.is_action_just_released("jump") and velocity.y < jump_velocity/2:
 		velocity.y = jump_velocity/2
 	move_and_slide()
@@ -117,9 +130,20 @@ func _on_death_state_entered():
 	animation_player.play("death_nomovement")
 	PlayerGlobal.character_died(self)
 
-func _on_hit_state_entered():
-	animation_player.play("hit")
 
 func _on_hurtbox_hitbox_entered(damage):
 	state_chart.send_event("to hit")
 	health-=damage
+
+
+func _on_footsteps():
+	_sfx_footsteps.trigger()
+	
+func reset():
+	state_chart.send_event("to idle")
+
+
+func _on_hit_state_processing(_delta):
+	if(animation_player.is_playing()):
+		return
+	animation_player.play("hit")

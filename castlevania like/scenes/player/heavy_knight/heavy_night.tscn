@@ -1,4 +1,4 @@
-[gd_scene load_steps=211 format=3 uid="uid://cwod4uli27u18"]
+[gd_scene load_steps=217 format=3 uid="uid://cwod4uli27u18"]
 
 [ext_resource type="Script" path="res://scenes/player/heavy_knight/heavy_knight.gd" id="1_5avwq"]
 [ext_resource type="Texture2D" uid="uid://cx606bim8a0ih" path="res://assets/FreeKnight_v1/Colour2/Outline/120x80_PNGSheets/_Attack.png" id="2_m6qyu"]
@@ -35,12 +35,17 @@
 [ext_resource type="Script" path="res://addons/godot_state_charts/atomic_state.gd" id="33_c1e8p"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/transition.gd" id="34_6brmo"]
 [ext_resource type="PackedScene" uid="uid://da05p6kfh4vuv" path="res://components/hurtbox/hurtbox.tscn" id="35_vh1rw"]
+[ext_resource type="Script" path="res://addons/resonate/sound_manager/sound_bank.gd" id="36_ngh1q"]
+[ext_resource type="Script" path="res://addons/resonate/sound_manager/sound_event_resource.gd" id="37_qxvan"]
+[ext_resource type="AudioStream" uid="uid://b0cgwiawtv5ed" path="res://audio/sfx/knight footsteps/zapsplat_foley_footstep_single_wellington_boots_rubber_adults_on_gravel_stones_001_101965.mp3" id="38_5ki0j"]
+[ext_resource type="AudioStream" uid="uid://dgm275l7k784q" path="res://audio/sfx/knight footsteps/zapsplat_foley_footstep_single_wellington_boots_rubber_adults_on_gravel_stones_010_101974.mp3" id="39_cnn6k"]
+[ext_resource type="AudioStream" uid="uid://c7asybgq15y5w" path="res://audio/sfx/knight footsteps/zapsplat_foley_footstep_single_wellington_boots_rubber_adults_on_gravel_stones_011_101975.mp3" id="40_er02k"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dvocu"]
 height = 42.0
 
 [sub_resource type="Animation" id="Animation_hkmn1"]
-length = 0.25
+length = 0.21
 step = 0.01
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -485,6 +490,18 @@ tracks/1/keys = {
 "update": 1,
 "values": ["hit"]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:self_modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.11, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(0.814886, 0.0573128, 0.189831, 1), Color(0.814886, 0.0573128, 0.189831, 1), Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_3torx"]
 length = 0.666667
@@ -607,7 +624,7 @@ tracks/2/path = NodePath("Hurtbox/CollisionShape2D:disabled")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0.01, 0.49),
+"times": PackedFloat32Array(0.01, 0.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [true, false]
@@ -616,6 +633,7 @@ tracks/2/keys = {
 [sub_resource type="Animation" id="Animation_or4qg"]
 length = 0.666667
 loop_mode = 1
+step = 0.05
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -639,6 +657,23 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": ["run"]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.1, 0.45),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"_on_footsteps"
+}, {
+"args": [],
+"method": &"_on_footsteps"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_slo78"]
@@ -2027,10 +2062,20 @@ size = Vector2(31, 36)
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_rl76g"]
 height = 42.0
 
+[sub_resource type="Resource" id="Resource_cauxi"]
+script = ExtResource("37_qxvan")
+name = "Footsteps"
+bus = "SFX"
+volume = 1.0
+pitch = 1.0
+streams = Array[AudioStream]([ExtResource("38_5ki0j"), ExtResource("39_cnn6k"), ExtResource("40_er02k")])
+
 [node name="HeavyKnight" type="CharacterBody2D" groups=["player"]]
+self_modulate = Color(0.814886, 0.0573128, 0.189831, 1)
 collision_mask = 2
 floor_max_angle = 1.10479
 script = ExtResource("1_5avwq")
+health = 1000000000
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_dvocu")
@@ -2215,7 +2260,8 @@ delay_in_seconds = "0.1"
 [node name="to Idle" type="Node" parent="StateChart/Root/Light Attack"]
 script = ExtResource("34_6brmo")
 to = NodePath("../../Idle")
-delay_in_seconds = "0.5"
+delay_in_seconds = "0.3
+"
 
 [node name="fall4" type="Node" parent="StateChart/Root/Light Attack"]
 script = ExtResource("34_6brmo")
@@ -2292,6 +2338,13 @@ delay_in_seconds = "0.2"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
 shape = SubResource("CapsuleShape2D_rl76g")
+debug_color = Color(0.679127, 0.503151, 0.082504, 0.42)
+
+[node name="SoundBank" type="Node" parent="."]
+script = ExtResource("36_ngh1q")
+label = "HeavyKnight"
+bus = "SFX"
+events = Array[ExtResource("37_qxvan")]([SubResource("Resource_cauxi")])
 
 [connection signal="state_entered" from="StateChart/Root/Idle" to="." method="_on_idle_state_entered"]
 [connection signal="state_entered" from="StateChart/Root/Run" to="." method="_on_run_state_entered"]
@@ -2306,5 +2359,5 @@ shape = SubResource("CapsuleShape2D_rl76g")
 [connection signal="state_entered" from="StateChart/Root/Fall" to="." method="_on_fall_state_entered"]
 [connection signal="state_processing" from="StateChart/Root/Fall" to="." method="_on_fall_state_processing"]
 [connection signal="state_entered" from="StateChart/Root/Death" to="." method="_on_death_state_entered"]
-[connection signal="state_entered" from="StateChart/Root/Hit" to="." method="_on_hit_state_entered"]
+[connection signal="state_processing" from="StateChart/Root/Hit" to="." method="_on_hit_state_processing"]
 [connection signal="hitbox_entered" from="Hurtbox" to="." method="_on_hurtbox_hitbox_entered"]

@@ -11,4 +11,5 @@ func _ready():
 
 func _on_area_entered(hitbox:Hitbox):
 	if hitbox == null : return
+	GlobalSignals.someone_was_hit.emit(hitbox,self)
 	hitbox_entered.emit(hitbox.damage)

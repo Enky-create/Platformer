@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=3 uid="uid://b24uq2c337neh"]
+[gd_scene load_steps=51 format=3 uid="uid://b24uq2c337neh"]
 
 [ext_resource type="Script" path="res://scenes/enemies/ghost/ghost.gd" id="1_i0jx3"]
 [ext_resource type="PackedScene" uid="uid://ygrjiq1l14my" path="res://scenes/projectile/projectile_skull.tscn" id="2_6d6f3"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" path="res://addons/godot_state_charts/compound_state.gd" id="8_0u2wl"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/atomic_state.gd" id="9_p3sea"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/transition.gd" id="10_ajw6h"]
+[ext_resource type="Script" path="res://components/hitbox/hitbox.gd" id="12_yy31e"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hlvjm"]
 height = 38.0
@@ -229,7 +230,7 @@ animations = [{
 }]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_w1wy7"]
-radius = 81.0
+radius = 127.016
 
 [sub_resource type="Animation" id="Animation_uisnl"]
 length = 0.75
@@ -257,10 +258,21 @@ tracks/1/keys = {
 "update": 1,
 "values": ["appear"]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Hurtbox/CollisionShape2D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.1, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
 
 [sub_resource type="Animation" id="Animation_cej3k"]
 length = 0.333333
-loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -284,6 +296,32 @@ tracks/1/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": ["attack"]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Hitbox/CollisionShape2D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_increase_atack_count"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_osdes"]
@@ -356,7 +394,7 @@ tracks/2/keys = {
 }
 
 [sub_resource type="Animation" id="Animation_g56ft"]
-length = 0.8
+length = 0.35
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -364,7 +402,7 @@ tracks/0/path = NodePath("AnimatedSprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
 "values": [0, 1, 2, 3]
@@ -383,6 +421,7 @@ tracks/1/keys = {
 }
 
 [sub_resource type="Animation" id="Animation_ex6ip"]
+length = 0.7
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -390,7 +429,7 @@ tracks/0/path = NodePath("AnimatedSprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.125, 0.25, 0.375, 0.5, 0.625, 0.75, 0.875),
+"times": PackedFloat32Array(0, 0.125, 0.25, 0.3, 0.4, 0.5, 0.6, 0.7),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [0, 1, 2, 3, 4, 5, 6, 7]
@@ -407,6 +446,18 @@ tracks/1/keys = {
 "update": 1,
 "values": ["vanish"]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Hurtbox/CollisionShape2D:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.6),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_nk06a"]
 _data = {
@@ -421,19 +472,22 @@ _data = {
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_iyhy4"]
 size = Vector2(32, 52)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6y40n"]
+size = Vector2(62, 64)
+
 [node name="Ghost" type="CharacterBody2D"]
 collision_layer = 4
 script = ExtResource("1_i0jx3")
 group = "player"
 projectile = ExtResource("2_6d6f3")
+max_health = 20
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_hlvjm")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_yhmxi")
-animation = &"idle"
-frame = 6
+animation = &"appear"
 
 [node name="player_detector" type="Area2D" parent="."]
 collision_layer = 0
@@ -465,22 +519,93 @@ script = ExtResource("9_p3sea")
 
 [node name="To Attack Mode" type="Node" parent="StateChart/CompoundState/Search"]
 script = ExtResource("10_ajw6h")
-to = NodePath("../../Attack")
+to = NodePath("../../Attack Mode")
 event = &"to attack mode"
 delay_in_seconds = "0.0"
 
-[node name="Attack" type="Node" parent="StateChart/CompoundState"]
+[node name="Attack Mode" type="Node" parent="StateChart/CompoundState"]
 script = ExtResource("8_0u2wl")
 initial_state = NodePath("DistantAttack")
 
-[node name="DistantAttack" type="Node" parent="StateChart/CompoundState/Attack"]
+[node name="DistantAttack" type="Node" parent="StateChart/CompoundState/Attack Mode"]
 script = ExtResource("9_p3sea")
 
-[node name="Teleport" type="Node" parent="StateChart/CompoundState/Attack"]
+[node name="to Teleport" type="Node" parent="StateChart/CompoundState/Attack Mode/DistantAttack"]
+script = ExtResource("10_ajw6h")
+to = NodePath("../../Teleport")
+event = &"to Teleport"
+delay_in_seconds = "0.0"
+
+[node name="to Close Attack" type="Node" parent="StateChart/CompoundState/Attack Mode/DistantAttack"]
+script = ExtResource("10_ajw6h")
+to = NodePath("../../Close Attack")
+event = &"to Attack"
+delay_in_seconds = "0.0"
+
+[node name="Teleport" type="Node" parent="StateChart/CompoundState/Attack Mode"]
+script = ExtResource("8_0u2wl")
+initial_state = NodePath("Disappear")
+
+[node name="Disappear" type="Node" parent="StateChart/CompoundState/Attack Mode/Teleport"]
 script = ExtResource("9_p3sea")
 
-[node name="Attack" type="Node" parent="StateChart/CompoundState/Attack"]
+[node name="to Appear" type="Node" parent="StateChart/CompoundState/Attack Mode/Teleport/Disappear"]
+script = ExtResource("10_ajw6h")
+to = NodePath("../../Appear")
+event = &"to Appear"
+delay_in_seconds = "0.0"
+
+[node name="Appear" type="Node" parent="StateChart/CompoundState/Attack Mode/Teleport"]
 script = ExtResource("9_p3sea")
+
+[node name="to Close Attack" type="Node" parent="StateChart/CompoundState/Attack Mode/Teleport/Appear"]
+script = ExtResource("10_ajw6h")
+to = NodePath("../../../Close Attack")
+event = &"to Attack"
+delay_in_seconds = "0.0"
+
+[node name="to Distant Attack" type="Node" parent="StateChart/CompoundState/Attack Mode/Teleport/Appear"]
+script = ExtResource("10_ajw6h")
+to = NodePath("../../../DistantAttack")
+event = &"to distant attack"
+delay_in_seconds = "0.0"
+
+[node name="Close Attack" type="Node" parent="StateChart/CompoundState/Attack Mode"]
+script = ExtResource("8_0u2wl")
+initial_state = NodePath("Move closer")
+
+[node name="Move closer" type="Node" parent="StateChart/CompoundState/Attack Mode/Close Attack"]
+script = ExtResource("9_p3sea")
+
+[node name="to Melee Attack" type="Node" parent="StateChart/CompoundState/Attack Mode/Close Attack/Move closer"]
+script = ExtResource("10_ajw6h")
+to = NodePath("../../Melee Attack")
+event = &"to Melee Attack"
+delay_in_seconds = "0.0"
+
+[node name="Melee Attack" type="Node" parent="StateChart/CompoundState/Attack Mode/Close Attack"]
+script = ExtResource("9_p3sea")
+
+[node name="to Teleport" type="Node" parent="StateChart/CompoundState/Attack Mode/Close Attack/Melee Attack"]
+script = ExtResource("10_ajw6h")
+to = NodePath("../../../Teleport")
+event = &"to Teleport"
+delay_in_seconds = "0.0"
+
+[node name="to Close Attack" type="Node" parent="StateChart/CompoundState/Attack Mode/Close Attack/Melee Attack"]
+script = ExtResource("10_ajw6h")
+to = NodePath("../../../Close Attack")
+event = &"to Attack"
+delay_in_seconds = "0.0"
+
+[node name="Stunlock" type="Node" parent="StateChart/CompoundState/Attack Mode"]
+script = ExtResource("9_p3sea")
+
+[node name="to Teleport" type="Node" parent="StateChart/CompoundState/Attack Mode/Stunlock"]
+script = ExtResource("10_ajw6h")
+to = NodePath("../../Teleport")
+event = &"to Teleport"
+delay_in_seconds = "0.0"
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 1.5
@@ -489,11 +614,34 @@ wait_time = 1.5
 unique_name_in_owner = true
 
 [node name="Marker2D" type="Marker2D" parent="markers"]
-position = Vector2(0, -38)
+position = Vector2(-38, 0)
+
+[node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 0
+script = ExtResource("12_yy31e")
+damage = 10
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("RectangleShape2D_6y40n")
+disabled = true
+debug_color = Color(0.970592, 0.161629, 0.206249, 0.42)
+
+[node name="StunTimer" type="Timer" parent="."]
 
 [connection signal="body_entered" from="player_detector" to="." method="_on_player_detector_body_entered"]
 [connection signal="hitbox_entered" from="Hurtbox" to="." method="_on_hurtbox_hitbox_entered"]
 [connection signal="state_entered" from="StateChart/CompoundState/Search" to="." method="_on_search_state_entered"]
 [connection signal="state_physics_processing" from="StateChart/CompoundState/Search" to="." method="_on_search_state_physics_processing"]
-[connection signal="state_entered" from="StateChart/CompoundState/Attack/DistantAttack" to="." method="_on_distant_attack_state_entered"]
+[connection signal="state_entered" from="StateChart/CompoundState/Attack Mode/DistantAttack" to="." method="_on_distant_attack_state_entered"]
+[connection signal="state_exited" from="StateChart/CompoundState/Attack Mode/DistantAttack" to="." method="_on_distant_attack_state_exited"]
+[connection signal="state_processing" from="StateChart/CompoundState/Attack Mode/DistantAttack" to="." method="_on_distant_attack_state_processing"]
+[connection signal="state_entered" from="StateChart/CompoundState/Attack Mode/Teleport/Disappear" to="." method="_on_disappear_state_entered"]
+[connection signal="state_processing" from="StateChart/CompoundState/Attack Mode/Teleport/Disappear" to="." method="_on_disappear_state_processing"]
+[connection signal="state_entered" from="StateChart/CompoundState/Attack Mode/Teleport/Appear" to="." method="_on_appear_state_entered"]
+[connection signal="state_processing" from="StateChart/CompoundState/Attack Mode/Teleport/Appear" to="." method="_on_appear_state_processing"]
+[connection signal="state_exited" from="StateChart/CompoundState/Attack Mode/Close Attack/Move closer" to="." method="_on_move_closer_state_exited"]
+[connection signal="state_processing" from="StateChart/CompoundState/Attack Mode/Close Attack/Move closer" to="." method="_on_move_closer_state_processing"]
+[connection signal="state_entered" from="StateChart/CompoundState/Attack Mode/Close Attack/Melee Attack" to="." method="_on_melee_attack_state_entered"]
+[connection signal="state_processing" from="StateChart/CompoundState/Attack Mode/Close Attack/Melee Attack" to="." method="_on_melee_attack_state_processing"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

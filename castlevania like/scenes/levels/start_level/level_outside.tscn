@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bdfnx1cnt737h"]
+[gd_scene load_steps=19 format=3 uid="uid://bdfnx1cnt737h"]
 
 [ext_resource type="Texture2D" uid="uid://cxllglhcno11v" path="res://assets/gothicvania patreon collection/gothicvania patreon collection/Gothic-Horror-Files/PNG/layers/clouds.png" id="1_g5gvc"]
 [ext_resource type="Script" path="res://scenes/levels/start_level/level.gd" id="1_te8ha"]
@@ -9,6 +9,10 @@
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="7_eh7b3"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="8_jwbqy"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="9_to4b2"]
+[ext_resource type="Script" path="res://addons/resonate/music_manager/music_bank.gd" id="10_w4u5k"]
+[ext_resource type="Script" path="res://addons/resonate/music_manager/music_track_resource.gd" id="11_57ptn"]
+[ext_resource type="Script" path="res://addons/resonate/music_manager/music_stem_resource.gd" id="12_kwu2d"]
+[ext_resource type="AudioStream" uid="uid://phy1udm05ska" path="res://audio/Background ambient/music_biiansu_septuan_biiansu_longs_cinematic_drones_textures_023.mp3" id="13_gym0x"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lsc04"]
 texture = ExtResource("2_4f26k")
@@ -1491,6 +1495,19 @@ duration = 1.0
 transition = 0
 ease = 2
 
+[sub_resource type="Resource" id="Resource_klwb2"]
+script = ExtResource("12_kwu2d")
+name = "full"
+enabled = true
+volume = 1.0
+stream = ExtResource("13_gym0x")
+
+[sub_resource type="Resource" id="Resource_7x2y0"]
+script = ExtResource("11_57ptn")
+name = "Ambient"
+bus = "Music"
+stems = Array[ExtResource("12_kwu2d")]([SubResource("Resource_klwb2")])
+
 [node name="Level" type="Node2D"]
 script = ExtResource("1_te8ha")
 
@@ -1532,7 +1549,7 @@ position = Vector2(984, 2)
 search_distance = 60
 
 [node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(121, 121)
+position = Vector2(122, 121)
 editor_draw_limits = true
 
 [node name="PhantomCameraHost" type="Node" parent="Camera2D"]
@@ -1542,7 +1559,7 @@ script = ExtResource("7_eh7b3")
 
 [node name="PhantomCamera2D" type="Node2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(121, 121)
+position = Vector2(122, 121)
 script = ExtResource("8_jwbqy")
 priority = 1
 follow_mode = 2
@@ -1554,3 +1571,13 @@ dead_zone_width = 0.276
 dead_zone_height = 0.3
 show_viewfinder_in_play = true
 draw_limits = true
+
+[node name="MusicBank" type="Node" parent="."]
+script = ExtResource("10_w4u5k")
+label = "Ambient"
+bus = "Music"
+tracks = Array[ExtResource("11_57ptn")]([SubResource("Resource_7x2y0")])
+
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
+enabled = false
+blend_mode = 1

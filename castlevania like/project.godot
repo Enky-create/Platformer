@@ -26,10 +26,12 @@ manager/music/bus="Music"
 
 [autoload]
 
+SoundManager="*res://addons/resonate/sound_manager/sound_manager.gd"
 PlayerGlobal="*res://scenes/player/player_decomposed/player_global.tscn"
 PhantomCameraManager="*res://addons/phantom_camera/scripts/managers/phantom_camera_manager.gd"
-SoundManager="*res://addons/resonate/sound_manager/sound_manager.gd"
 MusicManager="*res://addons/resonate/music_manager/music_manager.gd"
+CollisionSoundManager="*res://scenes/SoundManager/collision_sound_manager.tscn"
+GlobalSignals="*res://scenes/Global Signals/global_signals.gd"
 
 [display]
 

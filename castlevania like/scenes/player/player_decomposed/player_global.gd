@@ -11,18 +11,19 @@ var current_character_position:Vector2
 func _ready():
 	current_character_position = get_tree().get_first_node_in_group("spawn").global_position
 	for scene in pull.characters:
-		var char = scene.instantiate()
-		add_child(char)
-		char.position=pull_position
-		characters.append(char)
-		char.set_process(false)
-		char.set_physics_process(false)
+		var character = scene.instantiate()
+		add_child(character)
+		character.position=pull_position
+		characters.append(character)
+		character.set_process(false)
+		character.set_physics_process(false)
 	set_active_character(current_index)
 
 func set_active_character(index:int):
 	# Деактивируем текущего персонажа, если он существует
 	if characters.size() > 0:
 		if characters[current_index]:
+			characters[current_index].reset()
 			characters[current_index].set_process(false)
 			characters[current_index].set_physics_process(false)
 			characters[current_index].global_position=pull_position

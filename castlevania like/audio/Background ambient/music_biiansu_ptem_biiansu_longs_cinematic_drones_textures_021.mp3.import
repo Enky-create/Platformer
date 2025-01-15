@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://buppvig36mxfn"
+path="res://.godot/imported/music_biiansu_ptem_biiansu_longs_cinematic_drones_textures_021.mp3-63949323001fee323bde0bf51c56694a.mp3str"
+
+[deps]
+
+source_file="res://audio/Background ambient/music_biiansu_ptem_biiansu_longs_cinematic_drones_textures_021.mp3"
+dest_files=["res://.godot/imported/music_biiansu_ptem_biiansu_longs_cinematic_drones_textures_021.mp3-63949323001fee323bde0bf51c56694a.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -611,6 +611,7 @@ autoplay = "idle"
 position = Vector2(23, 0)
 collision_layer = 32
 collision_mask = 0
+damage = 13
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 position = Vector2(0.235292, -1.17647)

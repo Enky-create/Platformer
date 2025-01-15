@@ -68,23 +68,25 @@ animations = [{
 }]
 
 [node name="Projectile" instance=ExtResource("1_63nbw")]
-speed = 16
+speed = 48
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="0"]
-position = Vector2(2, -10)
-scale = Vector2(0.666667, 0.666667)
+position = Vector2(0, -4)
+scale = Vector2(0.333333, 0.333333)
 sprite_frames = SubResource("SpriteFrames_x8nbt")
 autoplay = "default"
 
 [node name="hitbox" parent="." index="1"]
 collision_layer = 8
 collision_mask = 0
-damage = 100
+damage = 10
 
 [node name="Timer" parent="." index="2"]
 wait_time = 10.096
 one_shot = true
 
 [node name="Area2D" parent="." index="3"]
-collision_mask = 19
 monitorable = false
+
+[node name="CollisionShape2D" parent="Area2D" index="0"]
+debug_color = Color(0.861087, 0.135439, 0.811446, 0.42)
