@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://bdfnx1cnt737h"]
+[gd_scene load_steps=22 format=3 uid="uid://bdfnx1cnt737h"]
 
 [ext_resource type="Texture2D" uid="uid://cxllglhcno11v" path="res://assets/gothicvania patreon collection/gothicvania patreon collection/Gothic-Horror-Files/PNG/layers/clouds.png" id="1_g5gvc"]
 [ext_resource type="Script" path="res://scenes/levels/start_level/level.gd" id="1_te8ha"]
@@ -13,6 +13,7 @@
 [ext_resource type="Script" path="res://addons/resonate/music_manager/music_track_resource.gd" id="11_57ptn"]
 [ext_resource type="Script" path="res://addons/resonate/music_manager/music_stem_resource.gd" id="12_kwu2d"]
 [ext_resource type="AudioStream" uid="uid://phy1udm05ska" path="res://audio/Background ambient/music_biiansu_septuan_biiansu_longs_cinematic_drones_textures_023.mp3" id="13_gym0x"]
+[ext_resource type="Script" path="res://components/camera_switch_area/camera_switch_area.gd" id="14_ytb7m"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_lsc04"]
 texture = ExtResource("2_4f26k")
@@ -1508,6 +1509,15 @@ name = "Ambient"
 bus = "Music"
 stems = Array[ExtResource("12_kwu2d")]([SubResource("Resource_klwb2")])
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d1bub"]
+size = Vector2(346, 198)
+
+[sub_resource type="Resource" id="Resource_gg0b6"]
+script = ExtResource("9_to4b2")
+duration = 1.0
+transition = 9
+ease = 2
+
 [node name="Level" type="Node2D"]
 script = ExtResource("1_te8ha")
 
@@ -1561,9 +1571,10 @@ script = ExtResource("7_eh7b3")
 unique_name_in_owner = true
 position = Vector2(122, 121)
 script = ExtResource("8_jwbqy")
-priority = 1
+priority = 10
 follow_mode = 2
 tween_resource = SubResource("Resource_vy1p5")
+tween_on_load = false
 follow_offset = Vector2(0, -50)
 follow_damping = true
 follow_damping_value = Vector2(0.15, 0.15)
@@ -1581,3 +1592,25 @@ tracks = Array[ExtResource("11_57ptn")]([SubResource("Resource_7x2y0")])
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
 enabled = false
 blend_mode = 1
+
+[node name="CameraSwitchArea" type="Area2D" parent="." node_paths=PackedStringArray("camera")]
+position = Vector2(571, 57)
+collision_layer = 0
+monitorable = false
+script = ExtResource("14_ytb7m")
+camera = NodePath("../AccentcameraPhantomCamera2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CameraSwitchArea"]
+shape = SubResource("RectangleShape2D_d1bub")
+debug_color = Color(0.585111, 0.546448, 0.173411, 0.42)
+
+[node name="AccentcameraPhantomCamera2D" type="Node2D" parent="."]
+position = Vector2(559, 27)
+scale = Vector2(1.5, 1)
+script = ExtResource("8_jwbqy")
+tween_resource = SubResource("Resource_gg0b6")
+inactive_update_mode = 1
+draw_limits = true
+
+[connection signal="change_camera" from="CameraSwitchArea" to="." method="_on_camera_switch_area_change_camera"]
+[connection signal="return_to_deafault" from="CameraSwitchArea" to="." method="_on_camera_switch_area_return_to_deafault"]

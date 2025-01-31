@@ -21,7 +21,7 @@ func _ready():
 func on_sound_manager_updated():
 	if SoundManager.should_skip_instancing(_sfx_footsteps):
 		return
-	_sfx_footsteps=SoundManager.instance_poly("HeavyKnight","Footsteps")
+	_sfx_footsteps=SoundManager.instance_on_node("HeavyKnight","Footsteps",self)
 
 func _physics_process(_delta):
 	if not is_on_floor():
@@ -94,7 +94,7 @@ func _on_run_state_processing(delta):
 	if !direction:
 		state_chart.send_event("to idle")
 	velocity.x = move_toward(velocity.x, direction * speed,acceleration*delta)
-	
+	move_and_slide()
 	
 
 
@@ -137,10 +137,11 @@ func _on_hurtbox_hitbox_entered(damage):
 
 
 func _on_footsteps():
-	_sfx_footsteps.trigger()
+	_sfx_footsteps.trigger_varied()
 	
 func reset():
 	state_chart.send_event("to idle")
+	_sfx_footsteps.release()
 
 
 func _on_hit_state_processing(_delta):

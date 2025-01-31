@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://dp6ykq32nk7h"]
+
+[ext_resource type="Script" path="res://components/camera_switch_area/camera_switch_area.gd" id="1_v3urn"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dxs3p"]
+
+[node name="CameraSwitchArea" type="Area2D"]
+script = ExtResource("1_v3urn")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_dxs3p")
+debug_color = Color(0.6, 0.00392157, 0.980392, 0.568627)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
