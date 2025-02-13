@@ -1,19 +1,23 @@
 extends Character
 class_name HeavyKnight
 @onready var animation_player = $AnimationPlayer
-@onready var animated_sprite_2d = $AnimatedSprite2D
+@onready var animated_sprite_2d:AnimatedSprite2D = $AnimatedSprite2D
 @onready var collision_shape_2d = $Hurtbox/CollisionShape2D
 @onready var state_chart:StateChart = $StateChart
 @onready var hitbox = $Hitbox
-@export var friction = 900
-@export var dodge_speed = 100.0
-@export var acceleration = 1000
-@export var hitbox_offset = 46
+@onready var move_component:MoveComponent = $HorizontalMoveComponent
 
-var _sfx_footsteps=SoundManager.null_instance()
+@export var dodge_speed = 100.0
+
+@export var hitbox_offset = 46
 var direction:float
+
+var jump_progress
 var jump_position
 var look_direction:float = 1
+
+var _sfx_footsteps = SoundManager.null_instance()
+
 
 func _ready():
 	SoundManager.updated.connect(on_sound_manager_updated)
@@ -24,8 +28,7 @@ func on_sound_manager_updated():
 	_sfx_footsteps=SoundManager.instance_on_node("HeavyKnight","Footsteps",self)
 
 func _physics_process(_delta):
-	if not is_on_floor():
-		state_chart.send_event("to fall")
+	
 	if health<=0:
 		state_chart.send_event("to death")
 
@@ -38,9 +41,7 @@ func move_character(delta):
 		look_direction = direction
 		flip()
 		state_chart.send_event("to run")
-	else:
-		velocity.x = move_toward(velocity.x, 0, friction * delta)
-	move_and_slide()
+	move_component.move(delta,Vector2(direction,0))
 
 func jump():
 	state_chart.send_event("to jump")
@@ -59,6 +60,8 @@ func flip():
 		animated_sprite_2d.flip_h = false
 		hitbox.position.x = clamp(hitbox.position.x + hitbox_offset, -27, 27)
 
+func _sword_swing_sound()->void:
+	SoundManager.play("HeavyKnight", "Sword swing")
 
 func _on_run_state_entered():
 	animation_player.play("run")
@@ -93,9 +96,6 @@ func _on_fall_state_processing(_delta):
 func _on_run_state_processing(delta):
 	if !direction:
 		state_chart.send_event("to idle")
-	velocity.x = move_toward(velocity.x, direction * speed,acceleration*delta)
-	move_and_slide()
-	
 
 
 func _on_light_attack_state_entered():
@@ -116,14 +116,20 @@ func _on_hard_attack_state_processing(_delta):
 
 func _on_jump_state_entered():
 	animation_player.play("jump")
+	jump_progress=global_position.y
 	if  is_on_floor():
 		velocity.y = jump_velocity
-		move_and_slide()
+	
 
 
 func _on_jump_state_processing(_delta):
-	if Input.is_action_just_released("jump") and velocity.y < jump_velocity/2:
-		velocity.y = jump_velocity/2
+	if global_position.y<=jump_progress:
+		jump_progress=global_position.y
+	else:
+		state_chart.send_event("to fall")
+		
+	if Input.is_action_just_released("jump") and velocity.y < jump_velocity*0.5:
+		velocity.y = jump_velocity*0.5
 	move_and_slide()
 
 func _on_death_state_entered():

@@ -5,6 +5,7 @@ class_name Nightborne
 @onready var collision_shape_2d = $Hurtbox/CollisionShape2D
 @onready var state_chart:StateChart = $StateChart
 @onready var hitbox = $Hitbox
+@onready var horizontal_move_component:MoveComponent = $HorizontalMoveComponent
 @export var friction = 900
 @export var dodge_speed = 100.0
 @export var acceleration = 1000
@@ -23,16 +24,13 @@ func move_character(delta):
 	super.move_character(delta)
 	if not is_on_floor():
 		velocity.y += gravity * delta
-
 	direction = Input.get_axis("left_walk", "right_walk")
 	if direction != 0: 
 		look_direction = direction
 		flip()
 		state_chart.send_event("to run")
-	else:
-		velocity.x = move_toward(velocity.x, 0, friction * delta)
+	horizontal_move_component.move(delta,Vector2(direction,0))
 
-	move_and_slide()
 
 func jump():
 	state_chart.send_event("to jump")
@@ -60,7 +58,6 @@ func _on_run_state_entered():
 
 
 func _on_run_state_processing(delta):
-	velocity.x = move_toward(velocity.x, speed*direction, acceleration * delta)
 	if direction == 0:
 		state_chart.send_event("to idle")
 

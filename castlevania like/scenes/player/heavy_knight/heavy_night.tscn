@@ -1,4 +1,4 @@
-[gd_scene load_steps=217 format=3 uid="uid://cwod4uli27u18"]
+[gd_scene load_steps=222 format=3 uid="uid://cwod4uli27u18"]
 
 [ext_resource type="Script" path="res://scenes/player/heavy_knight/heavy_knight.gd" id="1_5avwq"]
 [ext_resource type="Texture2D" uid="uid://cx606bim8a0ih" path="res://assets/FreeKnight_v1/Colour2/Outline/120x80_PNGSheets/_Attack.png" id="2_m6qyu"]
@@ -40,6 +40,10 @@
 [ext_resource type="AudioStream" uid="uid://b0cgwiawtv5ed" path="res://audio/sfx/knight footsteps/zapsplat_foley_footstep_single_wellington_boots_rubber_adults_on_gravel_stones_001_101965.mp3" id="38_5ki0j"]
 [ext_resource type="AudioStream" uid="uid://dgm275l7k784q" path="res://audio/sfx/knight footsteps/zapsplat_foley_footstep_single_wellington_boots_rubber_adults_on_gravel_stones_010_101974.mp3" id="39_cnn6k"]
 [ext_resource type="AudioStream" uid="uid://c7asybgq15y5w" path="res://audio/sfx/knight footsteps/zapsplat_foley_footstep_single_wellington_boots_rubber_adults_on_gravel_stones_011_101975.mp3" id="40_er02k"]
+[ext_resource type="AudioStream" uid="uid://ybf0ddl3xqhk" path="res://audio/sfx/zapsplat_pack_sword_swings_hits_and_scrapes_mp3/zapsplat_warfare_sword_swing_medium_whoosh_blade_ring_001_43815.mp3" id="41_72r2i"]
+[ext_resource type="AudioStream" uid="uid://bv2ic13wxndw1" path="res://audio/sfx/zapsplat_pack_sword_swings_hits_and_scrapes_mp3/zapsplat_warfare_sword_swing_medium_whoosh_blade_ring_002_43816.mp3" id="42_fn60l"]
+[ext_resource type="AudioStream" uid="uid://btpnajw1kje3w" path="res://audio/sfx/zapsplat_pack_sword_swings_hits_and_scrapes_mp3/zapsplat_warfare_sword_swing_medium_whoosh_blade_ring_003_43817.mp3" id="43_j42u8"]
+[ext_resource type="Script" path="res://components/move_component/horizontal_move_component.gd" id="44_ihwni"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dvocu"]
 height = 42.0
@@ -82,6 +86,20 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_sword_swing_sound"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_73hc4"]
@@ -243,6 +261,20 @@ tracks/2/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0.13),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_sword_swing_sound"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_7b07y"]
@@ -2070,13 +2102,20 @@ volume = 1.0
 pitch = 1.0
 streams = Array[AudioStream]([ExtResource("38_5ki0j"), ExtResource("39_cnn6k"), ExtResource("40_er02k")])
 
+[sub_resource type="Resource" id="Resource_0j002"]
+script = ExtResource("37_qxvan")
+name = "Sword swing"
+bus = "SFX"
+volume = 1.0
+pitch = 1.0
+streams = Array[AudioStream]([ExtResource("41_72r2i"), ExtResource("42_fn60l"), ExtResource("43_j42u8")])
+
 [node name="HeavyKnight" type="CharacterBody2D" groups=["player"]]
 self_modulate = Color(0.814886, 0.0573128, 0.189831, 1)
 collision_mask = 2
 floor_max_angle = 1.10479
 script = ExtResource("1_5avwq")
 speed = 120.0
-health = 1000000000
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_dvocu")
@@ -2089,7 +2128,7 @@ libraries = {
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -19)
 sprite_frames = SubResource("SpriteFrames_vr3m8")
-animation = &"hit"
+animation = &"attack_nomovement"
 autoplay = "idle"
 
 [node name="Hitbox" type="Area2D" parent="."]
@@ -2345,7 +2384,11 @@ debug_color = Color(0.679127, 0.503151, 0.082504, 0.42)
 script = ExtResource("36_ngh1q")
 label = "HeavyKnight"
 bus = "SFX"
-events = Array[ExtResource("37_qxvan")]([SubResource("Resource_cauxi")])
+events = Array[ExtResource("37_qxvan")]([SubResource("Resource_cauxi"), SubResource("Resource_0j002")])
+
+[node name="HorizontalMoveComponent" type="Node" parent="." node_paths=PackedStringArray("character")]
+script = ExtResource("44_ihwni")
+character = NodePath("..")
 
 [connection signal="state_entered" from="StateChart/Root/Idle" to="." method="_on_idle_state_entered"]
 [connection signal="state_entered" from="StateChart/Root/Run" to="." method="_on_run_state_entered"]

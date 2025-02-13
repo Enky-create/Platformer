@@ -1,4 +1,4 @@
-[gd_scene load_steps=74 format=3 uid="uid://d1kpr3w3rri85"]
+[gd_scene load_steps=75 format=3 uid="uid://d1kpr3w3rri85"]
 
 [ext_resource type="Texture2D" uid="uid://bj4ej1ouifakf" path="res://assets/NightBorne/NightBorne.png" id="1_cvinl"]
 [ext_resource type="Script" path="res://scenes/player/nightborne/nightborne.gd" id="1_v7r74"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://addons/godot_state_charts/compound_state.gd" id="5_n8lo2"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/atomic_state.gd" id="6_e3vcf"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/transition.gd" id="8_td6xe"]
+[ext_resource type="Script" path="res://components/move_component/horizontal_move_component.gd" id="9_4j63e"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ut3p2"]
 
@@ -669,6 +670,10 @@ script = ExtResource("6_e3vcf")
 script = ExtResource("8_td6xe")
 to = NodePath("../../idle")
 delay_in_seconds = "1.1"
+
+[node name="HorizontalMoveComponent" type="Node" parent="." node_paths=PackedStringArray("character")]
+script = ExtResource("9_4j63e")
+character = NodePath("..")
 
 [connection signal="hitbox_entered" from="Hurtbox" to="." method="_on_hurtbox_hitbox_entered"]
 [connection signal="state_entered" from="StateChart/Root/idle" to="." method="_on_idle_state_entered"]

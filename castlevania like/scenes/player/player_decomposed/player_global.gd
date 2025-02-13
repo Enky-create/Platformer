@@ -58,6 +58,7 @@ func _physics_process(delta):
 			current_character.dodge()
 		if Input.is_action_just_pressed("switch_character"):
 			switch_to_next_character()
+	
 
 func character_died(character:Character):
 	characters.erase(character)

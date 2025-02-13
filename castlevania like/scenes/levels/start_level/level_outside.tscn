@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://cxllglhcno11v" path="res://assets/gothicvania patreon collection/gothicvania patreon collection/Gothic-Horror-Files/PNG/layers/clouds.png" id="1_g5gvc"]
 [ext_resource type="Script" path="res://scenes/levels/start_level/level.gd" id="1_te8ha"]
 [ext_resource type="Texture2D" uid="uid://dh44fdi8ccc3l" path="res://assets/gothicvania patreon collection/gothicvania patreon collection/Gothic-Horror-Files/PNG/layers/tiles.png" id="2_4f26k"]
-[ext_resource type="Texture2D" uid="uid://dnxvyhx36g7vj" path="res://assets/gothicvania patreon collection/gothicvania patreon collection/Gothic-Horror-Files/PNG/layers/town.png" id="2_80nrf"]
+[ext_resource type="Texture2D" uid="uid://6qqb0kndlewe" path="res://assets/gothicvania patreon collection/gothicvania patreon collection/Gothic-Horror-Files/PNG/layers/town2.png" id="3_frnsl"]
 [ext_resource type="PackedScene" uid="uid://ddrid0cctayf2" path="res://components/spawn_point/spawn.tscn" id="4_4ua18"]
 [ext_resource type="PackedScene" uid="uid://b24uq2c337neh" path="res://scenes/enemies/ghost/ghost.tscn" id="5_nnhlm"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="7_eh7b3"]
@@ -1522,24 +1522,25 @@ ease = 2
 script = ExtResource("1_te8ha")
 
 [node name="ParallaxBackground" type="ParallaxBackground" parent="."]
-scroll_offset = Vector2(622.462, 352.309)
+scroll_base_offset = Vector2(500, 0)
 
 [node name="sky" type="ParallaxLayer" parent="ParallaxBackground"]
+position = Vector2(-4, 2)
 motion_scale = Vector2(0, 0)
-motion_offset = Vector2(0, -30)
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/sky"]
+texture_filter = 1
 position = Vector2(1, -42)
 scale = Vector2(1.4, 1.6)
 texture = ExtResource("1_g5gvc")
 centered = false
 
 [node name="city" type="ParallaxLayer" parent="ParallaxBackground"]
-motion_mirroring = Vector2(256, 0)
+motion_mirroring = Vector2(512, 0)
 
 [node name="Sprite2D" type="Sprite2D" parent="ParallaxBackground/city"]
 position = Vector2(1, -30)
-texture = ExtResource("2_80nrf")
+texture = ExtResource("3_frnsl")
 centered = false
 
 [node name="TileMap" type="TileMap" parent="."]

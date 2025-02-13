@@ -11,7 +11,7 @@ class_name Character
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
-func move_character(_delta):
+func move_character(delta):
 	PlayerGlobal.current_character_position=global_position
 func jump():
 	pass
