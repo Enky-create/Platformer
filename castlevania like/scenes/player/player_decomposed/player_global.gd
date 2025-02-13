@@ -49,7 +49,7 @@ func switch_to_next_character():
 func _physics_process(delta):
 	if characters.size() > 0:
 		current_character = characters[current_index]
-		current_character.move_character(delta)
+		current_character.move_character(Input.get_axis("left_walk","right_walk"),delta)
 		if Input.is_action_just_pressed("jump"):
 			current_character.jump()
 		if Input.is_action_just_pressed("attack"):

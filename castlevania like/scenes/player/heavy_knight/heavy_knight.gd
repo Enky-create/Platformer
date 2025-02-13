@@ -1,20 +1,21 @@
 extends Character
 class_name HeavyKnight
 @onready var animation_player = $AnimationPlayer
-@onready var animated_sprite_2d:AnimatedSprite2D = $AnimatedSprite2D
-@onready var collision_shape_2d = $Hurtbox/CollisionShape2D
+#@onready var animated_sprite_2d:AnimatedSprite2D = $AnimatedSprite2D
+#@onready var collision_shape_2d = $Hurtbox/CollisionShape2D
 @onready var state_chart:StateChart = $StateChart
-@onready var hitbox = $Hitbox
+#@onready var hitbox = $Hitbox
 @onready var move_component:MoveComponent = $HorizontalMoveComponent
+@onready var orientation_component:OrientationComponent = $OrientationComponent
 
 @export var dodge_speed = 100.0
 
 @export var hitbox_offset = 46
-var direction:float
+var input_direction:float
 
 var jump_progress
 var jump_position
-var look_direction:float = 1
+var look_input_direction:float = 1
 
 var _sfx_footsteps = SoundManager.null_instance()
 
@@ -32,16 +33,18 @@ func _physics_process(_delta):
 	if health<=0:
 		state_chart.send_event("to death")
 
-func move_character(delta):
-	super.move_character(delta)
+func move_character(direction,delta):
+	super.move_character(direction,delta)
 	if not is_on_floor():
 		velocity.y += gravity * delta
-	direction = Input.get_axis("left_walk", "right_walk")
-	if direction != 0: 
-		look_direction = direction
-		flip()
+		
+	input_direction = direction
+	
+	orientation_component.update_orientation(input_direction)
+	
+	if input_direction != 0: 
 		state_chart.send_event("to run")
-	move_component.move(delta,Vector2(direction,0))
+	move_component.move(delta,Vector2(input_direction,0))
 
 func jump():
 	state_chart.send_event("to jump")
@@ -51,14 +54,6 @@ func attack():
 
 func dodge():
 	state_chart.send_event("to dodge")
-
-func flip():
-	if direction < 0:
-		animated_sprite_2d.flip_h = true
-		hitbox.position.x = clamp(hitbox.position.x - hitbox_offset, -27, 27)
-	elif direction > 0:
-		animated_sprite_2d.flip_h = false
-		hitbox.position.x = clamp(hitbox.position.x + hitbox_offset, -27, 27)
 
 func _sword_swing_sound()->void:
 	SoundManager.play("HeavyKnight", "Sword swing")
@@ -76,7 +71,7 @@ func _on_dodge_state_entered():
 func _on_dodge_state_physics_processing(_delta):
 	if not animation_player.is_playing():
 		state_chart.send_event("to idle")
-	velocity.x = look_direction*dodge_speed
+	velocity.x = orientation_component.look_direction*dodge_speed
 	move_and_slide()
 	
 
@@ -94,7 +89,7 @@ func _on_fall_state_processing(_delta):
 
 
 func _on_run_state_processing(delta):
-	if !direction:
+	if !input_direction:
 		state_chart.send_event("to idle")
 
 

@@ -10,9 +10,9 @@ class_name Nightborne
 @export var dodge_speed = 100.0
 @export var acceleration = 1000
 @export var hitbox_offset = 46
-var direction:float
+var input_direction:float
 var jump_position
-var look_direction:float = 1
+var look_input_direction:float = 1
 
 func _ready():
 	speed=400
@@ -20,16 +20,16 @@ func _ready():
 func _physics_process(_delta):
 	if not is_on_floor():
 		state_chart.send_event("to fall")
-func move_character(delta):
-	super.move_character(delta)
+func move_character(direction,delta):
+	super.move_character(direction,delta)
 	if not is_on_floor():
 		velocity.y += gravity * delta
-	direction = Input.get_axis("left_walk", "right_walk")
-	if direction != 0: 
-		look_direction = direction
+	input_direction = direction
+	if input_direction != 0: 
+		look_input_direction = input_direction
 		flip()
 		state_chart.send_event("to run")
-	horizontal_move_component.move(delta,Vector2(direction,0))
+	horizontal_move_component.move(delta,Vector2(input_direction,0))
 
 
 func jump():
@@ -42,10 +42,10 @@ func dodge():
 	state_chart.send_event("to dodge")
 
 func flip():
-	if direction < 0:
+	if input_direction < 0:
 		animated_sprite_2d.flip_h = true
 		hitbox.position.x = clamp(hitbox.position.x - hitbox_offset, -27, 27)
-	elif direction > 0:
+	elif input_direction > 0:
 		animated_sprite_2d.flip_h = false
 		hitbox.position.x = clamp(hitbox.position.x + hitbox_offset, -27, 27)
 
@@ -58,7 +58,7 @@ func _on_run_state_entered():
 
 
 func _on_run_state_processing(delta):
-	if direction == 0:
+	if input_direction == 0:
 		state_chart.send_event("to idle")
 
 func _on_attack_state_entered():

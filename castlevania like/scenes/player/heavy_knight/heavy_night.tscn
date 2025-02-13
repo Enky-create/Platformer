@@ -1,4 +1,4 @@
-[gd_scene load_steps=222 format=3 uid="uid://cwod4uli27u18"]
+[gd_scene load_steps=223 format=3 uid="uid://cwod4uli27u18"]
 
 [ext_resource type="Script" path="res://scenes/player/heavy_knight/heavy_knight.gd" id="1_5avwq"]
 [ext_resource type="Texture2D" uid="uid://cx606bim8a0ih" path="res://assets/FreeKnight_v1/Colour2/Outline/120x80_PNGSheets/_Attack.png" id="2_m6qyu"]
@@ -44,6 +44,7 @@
 [ext_resource type="AudioStream" uid="uid://bv2ic13wxndw1" path="res://audio/sfx/zapsplat_pack_sword_swings_hits_and_scrapes_mp3/zapsplat_warfare_sword_swing_medium_whoosh_blade_ring_002_43816.mp3" id="42_fn60l"]
 [ext_resource type="AudioStream" uid="uid://btpnajw1kje3w" path="res://audio/sfx/zapsplat_pack_sword_swings_hits_and_scrapes_mp3/zapsplat_warfare_sword_swing_medium_whoosh_blade_ring_003_43817.mp3" id="43_j42u8"]
 [ext_resource type="Script" path="res://components/move_component/horizontal_move_component.gd" id="44_ihwni"]
+[ext_resource type="Script" path="res://components/orientational component/orientational_component.gd" id="45_jipxs"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_dvocu"]
 height = 42.0
@@ -2389,6 +2390,11 @@ events = Array[ExtResource("37_qxvan")]([SubResource("Resource_cauxi"), SubResou
 [node name="HorizontalMoveComponent" type="Node" parent="." node_paths=PackedStringArray("character")]
 script = ExtResource("44_ihwni")
 character = NodePath("..")
+
+[node name="OrientationComponent" type="Node" parent="." node_paths=PackedStringArray("animated_sprite", "hitbox")]
+script = ExtResource("45_jipxs")
+animated_sprite = NodePath("../AnimatedSprite2D")
+hitbox = NodePath("../Hitbox")
 
 [connection signal="state_entered" from="StateChart/Root/Idle" to="." method="_on_idle_state_entered"]
 [connection signal="state_entered" from="StateChart/Root/Run" to="." method="_on_run_state_entered"]
