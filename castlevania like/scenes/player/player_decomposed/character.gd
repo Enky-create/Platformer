@@ -1,12 +1,13 @@
 extends CharacterBody2D
 class_name Character
-
+signal health_changed
 @export var speed = 200.0
 @export var type:CharacterTypes.CharacterType=CharacterTypes.CharacterType.Knight
 @export var jump_velocity = -400.0
-@export var health:int = 100:
+@export var health:float = 100:
 	set(value):
 		health = clamp(value, 0, maxhealth)
+		health_changed.emit()
 @export var maxhealth:int = 100
 
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")

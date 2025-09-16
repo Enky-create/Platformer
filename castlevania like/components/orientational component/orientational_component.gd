@@ -13,10 +13,10 @@ func update_orientation(direction: float) -> void:
 		return
 	look_direction = sign(direction)
 	apply_visuals()
+	adjust_hitbox_position()
 
 func apply_visuals() -> void:
 	animated_sprite.flip_h = look_direction < 0
-	adjust_hitbox_position()
 
 func adjust_hitbox_position() -> void:
 	var target_offset = hitbox_offset * look_direction

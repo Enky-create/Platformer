@@ -1,10 +1,7 @@
 extends Character
 class_name HeavyKnight
 @onready var animation_player = $AnimationPlayer
-#@onready var animated_sprite_2d:AnimatedSprite2D = $AnimatedSprite2D
-#@onready var collision_shape_2d = $Hurtbox/CollisionShape2D
 @onready var state_chart:StateChart = $StateChart
-#@onready var hitbox = $Hitbox
 @onready var move_component:MoveComponent = $HorizontalMoveComponent
 @onready var orientation_component:OrientationComponent = $OrientationComponent
 

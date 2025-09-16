@@ -2129,7 +2129,7 @@ libraries = {
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -19)
 sprite_frames = SubResource("SpriteFrames_vr3m8")
-animation = &"attack_nomovement"
+animation = &"attack"
 autoplay = "idle"
 
 [node name="Hitbox" type="Area2D" parent="."]

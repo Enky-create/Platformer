@@ -10,6 +10,7 @@ func _ready():
 	top_level=true
 	timer.wait_time=time
 	animated_sprite_2d.flip_h= direction.x > 0
+	reparent(get_tree().current_scene)
 	
 func _physics_process(delta):
 	self.position+=direction*speed*delta

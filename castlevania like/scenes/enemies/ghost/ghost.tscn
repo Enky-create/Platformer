@@ -1,4 +1,4 @@
-[gd_scene load_steps=51 format=3 uid="uid://b24uq2c337neh"]
+[gd_scene load_steps=66 format=3 uid="uid://b24uq2c337neh"]
 
 [ext_resource type="Script" path="res://scenes/enemies/ghost/ghost.gd" id="1_i0jx3"]
 [ext_resource type="PackedScene" uid="uid://ygrjiq1l14my" path="res://scenes/projectile/projectile_skull.tscn" id="2_6d6f3"]
@@ -12,6 +12,12 @@
 [ext_resource type="Script" path="res://addons/godot_state_charts/atomic_state.gd" id="9_p3sea"]
 [ext_resource type="Script" path="res://addons/godot_state_charts/transition.gd" id="10_ajw6h"]
 [ext_resource type="Script" path="res://components/hitbox/hitbox.gd" id="12_yy31e"]
+[ext_resource type="Script" path="res://addons/resonate/sound_manager/sound_bank.gd" id="13_2hmqr"]
+[ext_resource type="Script" path="res://addons/resonate/sound_manager/sound_event_resource.gd" id="14_0lw3m"]
+[ext_resource type="AudioStream" uid="uid://c3ugwd644vcn2" path="res://audio/sfx/ghostly_breath/zapsplat_horror_ghostly_breath_male_dry_low_pitched_008_83422.mp3" id="15_qx6io"]
+[ext_resource type="AudioStream" uid="uid://wlk5hseauvc7" path="res://audio/sfx/ghostly_breath/zapsplat_horror_ghostly_breath_male_dry_low_pitched_009_83423.mp3" id="16_6x05n"]
+[ext_resource type="AudioStream" uid="uid://citngohyygma2" path="res://audio/sfx/ghostly_breath/zapsplat_horror_ghostly_breath_male_dry_low_pitched_010_83424.mp3" id="17_k3kod"]
+[ext_resource type="AudioStream" uid="uid://be64q6ylxoq0l" path="res://audio/sfx/ghostly_breath/zapsplat_horror_ghostly_breath_male_dry_low_pitched_011_83425.mp3" id="18_n8y7r"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_hlvjm"]
 height = 38.0
@@ -91,6 +97,34 @@ region = Rect2(128, 0, 64, 80)
 [sub_resource type="AtlasTexture" id="AtlasTexture_0gb6b"]
 atlas = ExtResource("3_178m4")
 region = Rect2(192, 0, 64, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6n1iw"]
+atlas = ExtResource("4_o0yov")
+region = Rect2(0, 0, 64, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3mxct"]
+atlas = ExtResource("4_o0yov")
+region = Rect2(64, 0, 64, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_g337j"]
+atlas = ExtResource("4_o0yov")
+region = Rect2(128, 0, 64, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_baimb"]
+atlas = ExtResource("4_o0yov")
+region = Rect2(192, 0, 64, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gah06"]
+atlas = ExtResource("4_o0yov")
+region = Rect2(256, 0, 64, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rwxdn"]
+atlas = ExtResource("4_o0yov")
+region = Rect2(320, 0, 64, 80)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_67jaf"]
+atlas = ExtResource("4_o0yov")
+region = Rect2(384, 0, 64, 80)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_mqda2"]
 atlas = ExtResource("5_ddsp8")
@@ -197,6 +231,32 @@ animations = [{
 }],
 "loop": false,
 "name": &"shrink",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_6n1iw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3mxct")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_g337j")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_baimb")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gah06")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rwxdn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_67jaf")
+}],
+"loop": true,
+"name": &"stunlock",
 "speed": 5.0
 }, {
 "frames": [{
@@ -354,7 +414,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id="Animation_ocq5f"]
 resource_name = "search"
-length = 0.875
+length = 8.72
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -363,10 +423,10 @@ tracks/0/path = NodePath("AnimatedSprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.125, 0.25, 0.375, 0.5, 0.625, 0.75),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.125, 0.25, 0.375, 0.5, 0.625, 0.75, 0.903355, 1.02836, 1.15336, 1.27836, 1.40336, 1.525, 1.65, 1.8, 1.925, 2.05, 2.175, 2.3, 2.42164, 2.54664),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
-"values": [0, 1, 2, 3, 4, 5, 6]
+"values": [0, 1, 2, 3, 4, 5, 6, 0, 1, 2, 3, 4, 5, 6, 0, 1, 2, 3, 4, 5, 6]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -380,21 +440,23 @@ tracks/1/keys = {
 "update": 1,
 "values": ["idle"]
 }
-tracks/2/type = "value"
+tracks/2/type = "method"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath(".:position")
+tracks/2/path = NodePath(".")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.8),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(-10, 0), Vector2(10, 0)]
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_on_searching_animation"
+}]
 }
 
 [sub_resource type="Animation" id="Animation_g56ft"]
-length = 0.35
+length = 0.8
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -402,7 +464,7 @@ tracks/0/path = NodePath("AnimatedSprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
 "values": [0, 1, 2, 3]
@@ -420,8 +482,9 @@ tracks/1/keys = {
 "values": ["shrink"]
 }
 
-[sub_resource type="Animation" id="Animation_ex6ip"]
-length = 0.7
+[sub_resource type="Animation" id="Animation_n1rb8"]
+length = 0.35
+loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -429,7 +492,57 @@ tracks/0/path = NodePath("AnimatedSprite2D:frame")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.125, 0.25, 0.3, 0.4, 0.5, 0.6, 0.7),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.8, 1, 1.2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:animation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["stunlock"]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Hitbox/CollisionShape2D:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, true]
+}
+
+[sub_resource type="Animation" id="Animation_ex6ip"]
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.125, 0.25, 0.375, 0.5, 0.625, 0.75, 0.875),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [0, 1, 2, 3, 4, 5, 6, 7]
@@ -466,6 +579,7 @@ _data = {
 "idle": SubResource("Animation_osdes"),
 "search": SubResource("Animation_ocq5f"),
 "shrink": SubResource("Animation_g56ft"),
+"stunlock": SubResource("Animation_n1rb8"),
 "vanish": SubResource("Animation_ex6ip")
 }
 
@@ -475,7 +589,16 @@ size = Vector2(32, 52)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6y40n"]
 size = Vector2(62, 64)
 
+[sub_resource type="Resource" id="Resource_s7fdx"]
+script = ExtResource("14_0lw3m")
+name = "ghostly_breath"
+bus = "Enemies"
+volume = 1.0
+pitch = 1.0
+streams = Array[AudioStream]([ExtResource("15_qx6io"), ExtResource("16_6x05n"), ExtResource("17_k3kod"), ExtResource("18_n8y7r")])
+
 [node name="Ghost" type="CharacterBody2D"]
+position = Vector2(-2.5, 0)
 collision_layer = 4
 script = ExtResource("1_i0jx3")
 group = "player"
@@ -487,7 +610,8 @@ shape = SubResource("CapsuleShape2D_hlvjm")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_yhmxi")
-animation = &"appear"
+animation = &"idle"
+frame = 1
 
 [node name="player_detector" type="Area2D" parent="."]
 collision_layer = 0
@@ -598,6 +722,12 @@ to = NodePath("../../../Close Attack")
 event = &"to Attack"
 delay_in_seconds = "0.0"
 
+[node name="to stunlock" type="Node" parent="StateChart/CompoundState/Attack Mode/Close Attack/Melee Attack"]
+script = ExtResource("10_ajw6h")
+to = NodePath("../../../Stunlock")
+event = &"to stunlock"
+delay_in_seconds = "0.0"
+
 [node name="Stunlock" type="Node" parent="StateChart/CompoundState/Attack Mode"]
 script = ExtResource("9_p3sea")
 
@@ -614,7 +744,7 @@ wait_time = 1.5
 unique_name_in_owner = true
 
 [node name="Marker2D" type="Marker2D" parent="markers"]
-position = Vector2(-38, 0)
+position = Vector2(0, -54)
 
 [node name="Hitbox" type="Area2D" parent="."]
 collision_layer = 8
@@ -628,6 +758,12 @@ disabled = true
 debug_color = Color(0.970592, 0.161629, 0.206249, 0.42)
 
 [node name="StunTimer" type="Timer" parent="."]
+
+[node name="SoundBank" type="Node" parent="."]
+script = ExtResource("13_2hmqr")
+label = "ghost"
+bus = "SFX"
+events = Array[ExtResource("14_0lw3m")]([SubResource("Resource_s7fdx")])
 
 [connection signal="body_entered" from="player_detector" to="." method="_on_player_detector_body_entered"]
 [connection signal="hitbox_entered" from="Hurtbox" to="." method="_on_hurtbox_hitbox_entered"]
@@ -644,4 +780,6 @@ debug_color = Color(0.970592, 0.161629, 0.206249, 0.42)
 [connection signal="state_processing" from="StateChart/CompoundState/Attack Mode/Close Attack/Move closer" to="." method="_on_move_closer_state_processing"]
 [connection signal="state_entered" from="StateChart/CompoundState/Attack Mode/Close Attack/Melee Attack" to="." method="_on_melee_attack_state_entered"]
 [connection signal="state_processing" from="StateChart/CompoundState/Attack Mode/Close Attack/Melee Attack" to="." method="_on_melee_attack_state_processing"]
+[connection signal="state_entered" from="StateChart/CompoundState/Attack Mode/Stunlock" to="." method="_on_stunlock_state_entered"]
+[connection signal="state_processing" from="StateChart/CompoundState/Attack Mode/Stunlock" to="." method="_on_stunlock_state_processing"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -26,11 +26,25 @@ var all_spawn_positions:Array[Node]
 @export var _curent_attack_count=0
 @export var distant_attack_count=2
 var _current_distant_attack =0
+
+var _instance: PooledAudioStreamPlayer2D = SoundManager.null_instance_2d()
+
 func _ready():
 	all_spawn_positions=markers.get_children()
 	health =  max_health
 	PlayerGlobal.character_changed.connect(on_character_changed)
+	SoundManager.updated.connect(on_sound_manager_updated)
+
+func on_sound_manager_updated() -> void:
+	# The method call below is an inbuilt guard-clause that'll help us avoid 
+	# instancing an audio event when the SoundManager has not loaded, or when 
+	# we've already replaced our Null instance with a real one further down.
+	if SoundManager.should_skip_instancing(_instance):
+		return
+		
+	_instance = SoundManager.instance_on_node("ghost", "ghostly_breath", self)
 	
+
 func _increase_atack_count():
 	_curent_attack_count+=1
 
@@ -40,6 +54,9 @@ func _physics_process(_delta):
 			scale.x=-1
 		else:
 			scale.x=1
+func _on_searching_animation():
+	_instance.trigger_varied()
+
 func _on_player_detector_body_entered(body:Character):
 	if body==null: return
 	player = body
@@ -56,10 +73,12 @@ func _on_search_state_physics_processing(delta):
 		state_chart.send_event("to attack mode")
 
 func _on_search_state_entered():
-	animation_player.play("idle") 
+	animation_player.play("search") 
+	
 
 func _on_hurtbox_hitbox_entered(damage):
 	health=-damage 
+	state_chart.send_event("to stunlock")
 
 func _on_timer_timeout():
 	_current_distant_attack+=1
@@ -88,7 +107,7 @@ func _on_disappear_state_entered():
 func _on_disappear_state_processing(_delta):
 	if animation_player.is_playing():
 		return
-	var offset = Vector2(randi_range(max_random_position.x,max_random_position.x),randi_range(0,0))
+	var offset = Vector2(randi_range(-max_random_position.x,max_random_position.x),randi_range(0,0))
 	global_position = player.global_position + offset
 	state_chart.send_event("to Appear")
 
@@ -110,7 +129,7 @@ func _on_distant_attack_state_processing(_delta):
 		state_chart.send_event("to Teleport")
 
 func _on_move_closer_state_processing(delta):
-	velocity += global_position.direction_to(player.global_position) * attack_speed * delta
+	velocity = global_position.direction_to(player.global_position) * attack_speed
 	if global_position.distance_to(player.global_position)< distance_for_close_attack:
 		state_chart.send_event("to Melee Attack")
 	move_and_slide()
@@ -133,3 +152,16 @@ func _on_melee_attack_state_processing(_delta):
 
 func _on_move_closer_state_exited():
 	velocity=Vector2.ZERO
+
+
+func _on_stunlock_state_entered():
+	animation_player.play("stunlock")
+	
+
+
+func _on_stunlock_state_processing(delta):
+	if global_position.distance_to(player.global_position) > distance_for_close_attack:
+		state_chart.send_event("to Teleport") 
+	var player:Character = PlayerGlobal.current_character
+	velocity = player.global_position.direction_to(global_position) * attack_speed*1.5
+	move_and_slide()
